@@ -1,0 +1,20 @@
+name: CI Test  # 工作流名称
+on: [push]     # 触发事件：代码推送时执行
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # 运行环境
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4  # 检出仓库代码（官方 Action）
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20  # 指定 Node 版本
+
+      - name: Install dependencies
+        run: npm ci  # 安装依赖
+
+      - name: Run tests
+        run: npm test  # 执行测试
